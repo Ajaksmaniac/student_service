@@ -1,0 +1,33 @@
+<form [formGroup]="examsForm"   (ngSubmit)="onSubmit()">
+  <div class="col-8">
+
+    <b>Selecte exams you want to keep</b>
+
+    <div class="mb-3 d-flex flex-column">
+
+        <mat-label>Subjects</mat-label>
+        <mat-select   formControlName="exams" multiple [(ngModel)]="selectedExams">
+
+          <mat-option  *ngFor="let exam of exams" [value]="exam" [disabled]="exam.grade > 0">{{exam.exam.subject.name }}</mat-option>
+        </mat-select>
+
+
+
+
+
+
+
+  <div>
+
+
+  </div>
+    <div mat-dialog-actions>
+      <button mat-button  mat-flat-button type="submit" color="primary" [disabled]="!examsForm.valid">
+        Update Student exams
+      </button>
+
+    </div>
+
+  </div>
+</div>
+</form>

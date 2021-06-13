@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <div class="example-button-row">
+    <button mat-icon-button color="accent"  routerLink="" aria-label="Example icon button with a home icon">
+      <mat-icon>home</mat-icon>
+    </button>
+
+   <button mat-flat-button color="primary" routerLinkActive="active"  routerLink="/subject">Subjects</button>
+
+    <button mat-flat-button color="primary" routerLinkActive="active"  routerLink="/professor">Profesors</button>
+    <button mat-flat-button color="primary"  routerLinkActive="active"  routerLink="/period">Examination Periods</button>
+    <button mat-flat-button color="primary"  routerLinkActive="active"  routerLink="/exam">Exams</button>
+    <button mat-flat-button color="primary"  routerLinkActive="active"  routerLink="/student">Students</button>
+    <button mat-flat-button color="primary"  routerLinkActive="active"  routerLink="/grading">Exam Grading</button>
+
+  </div>
+  <span class="flexExpand"></span>
+  <h1>{{myDate | date}}</h1>
+</mat-toolbar>

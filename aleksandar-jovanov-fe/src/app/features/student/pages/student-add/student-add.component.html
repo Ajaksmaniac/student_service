@@ -1,0 +1,109 @@
+<form [formGroup]="studentForm"   (ngSubmit)="onSubmit()">
+  <div class="col-8">
+    <div class="mb-3 d-flex flex-column">
+      <label for="indexYear" class="form-label">Index Year</label>
+      <input id="indexYear" class="form-control" formControlName="indexYear" type="number"/>
+      <p class="alert alert-danger" *ngIf="studentForm.get('indexYear').hasError('required') && studentForm.get('indexYear').touched ">
+       Index Year is required
+
+
+      </p>
+      <p class="alert alert-danger" *ngIf="studentForm.get('indexYear').hasError('max') ">
+        Index Year Needs to be upto 2100
+
+
+       </p>
+
+
+    </div>
+    <div class="mb-3 d-flex flex-column">
+      <label for="indexNumber" class="form-label">Index Number</label>
+      <input id="indexNumber" class="form-control" formControlName="indexNumber" type="text"/>
+      <p class="alert alert-danger" *ngIf="studentForm.get('indexNumber').hasError('required') && studentForm.get('indexNumber').touched ">
+       Index Number is required
+
+      </p>
+      <p class="alert alert-danger" *ngIf="studentForm.get('indexNumber').hasError('maxlength') ">
+        Index Number need to have upto 4 characters
+
+       </p>
+    </div>
+
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="firstName" class="form-label">First name</label>
+      <input id="firstName" class="form-control" formControlName="firstName" type="text"/>
+      <p class="alert alert-danger" *ngIf="studentForm.get('firstName').hasError('required') && studentForm.get('firstName').touched">
+        First name is required
+
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="lastName" class="form-label">Last name</label>
+      <input id="lastName" class="form-control" formControlName="lastName" type="text"/>
+      <p class="alert alert-danger" *ngIf="studentForm.get('lastName').hasError('required') && studentForm.get('lastName').touched">
+        Last name is required
+
+      </p>
+    </div>
+
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" class="form-control" formControlName="email" type="email" />
+      <p class="alert alert-danger" *ngIf="studentForm.get('email').hasError('email') && studentForm.get('email').touched">
+        Email is invalid
+
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="adress" class="form-label">Adress</label>
+      <input id="adress" class="form-control" formControlName="adress" type="text" />
+      <p class="alert alert-danger" *ngIf="studentForm.get('adress').hasError('required') && studentForm.get('adress').touched">
+        Year of Study is required
+
+      </p>
+    </div>
+    <div class="mb-3 d-flex flex-column">
+      <label for="currentYearOfStudy" class="form-label">Year of Study</label>
+      <input id="currentYearOfStudy" class="form-control" formControlName="currentYearOfStudy" type="number" />
+      <p class="alert alert-danger" *ngIf="studentForm.get('currentYearOfStudy').hasError('required') && studentForm.get('currentYearOfStudy').touched">
+       Current Year of study is required
+
+      </p>
+    </div>
+
+
+
+
+
+
+    <div class="mb-3 d-flex flex-column">
+
+        <mat-label>City</mat-label>
+      <mat-select id="city" name="city"formControlName="city"  >
+
+        <mat-option *ngFor="let city of cities" [value]="city">{{city.cityName}}</mat-option>
+      </mat-select>
+
+
+    </div>
+
+
+
+
+  <div>
+
+
+  </div>
+    <div mat-dialog-actions>
+      <button mat-button  mat-flat-button type="submit" color="primary" [disabled]="!studentForm.valid">
+       Add Student
+      </button>
+
+    </div>
+
+  </div>
+</form>

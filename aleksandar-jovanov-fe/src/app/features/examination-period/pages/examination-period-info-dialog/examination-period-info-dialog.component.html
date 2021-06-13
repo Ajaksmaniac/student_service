@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Professor details</h1>
+<div mat-dialog-content>
+  <p>Name: {{ data.name }}</p>
+  <p>Starting Period: {{ data.starting_period |date}}</p>
+
+  <p>Ending Period: {{ data.ending_period |date}}</p>
+
+
+  <p>Exams:</p>
+  <p *ngFor="let exam of data.exams">{{exam.subject.name}}</p>
+</div>

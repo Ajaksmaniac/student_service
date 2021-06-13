@@ -1,0 +1,105 @@
+<mat-toolbar color="warn">
+  <h1>Exam registration</h1>
+
+</mat-toolbar>
+
+<form [formGroup]="examRegistrationForm" (ngSubmit)="onSubmit()">
+
+  <div class="col-8">
+
+      <div class="mb-3 d-flex flex-column">
+
+
+
+      <mat-label>Examination Period</mat-label>
+      <mat-select
+        id="examinationPeriod"
+        name="examinationPeriod"
+        formControlName="examinationPeriod"
+        [(ngModel)]="selectedPeriod"
+        (selectionChange)="periodChanged()"
+
+      >
+        <mat-option *ngFor="let period of periods" [value]="period">{{
+          period.name
+        }}</mat-option>
+      </mat-select>
+
+      <p class="alert alert-danger" *ngIf=" selectedPeriod && !selectedPeriod.active ">
+        Selected Period is not active
+
+
+       </p>
+       <mat-divider></mat-divider>
+       <div *ngIf="selectedPeriod">
+        <b>Period: {{selectedPeriod.name}}</b>
+        <br>
+        <b>From {{selectedPeriod.starting_period | date}} TO {{selectedPeriod.ending_period | date}}</b>
+      </div>
+      <p *ngIf="diff <= 7 && diff > 0">You have {{diff}} Days to register an exam</p>
+      <p *ngIf="diff > 7">You cant register an exam in this period</p>
+      <p *ngIf="diff < 0">Registrations for this exam period has ended</p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="mb-3 d-flex flex-column">
+
+
+
+      <mat-label>Exam</mat-label>
+      <mat-select
+        id="exam"
+        name="exam"
+        formControlName="exam"
+        [(ngModel)]="selectedExam"
+
+
+      >
+        <mat-option *ngFor="let exam of exams" [value]="exam">{{
+          exam.subject.name
+        }}</mat-option>
+      </mat-select>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="indexYear" class="form-label">Index Year</label>
+      <input id="indexYear" class="form-control" formControlName="indexYear" type="number"/>
+      <p class="alert alert-danger" *ngIf="examRegistrationForm.get('indexYear').hasError('required') && examRegistrationForm.get('indexYear').touched ">
+       Index Year is required
+
+
+      </p>
+      <p class="alert alert-danger" *ngIf="examRegistrationForm.get('indexYear').hasError('max') ">
+        Index Year Needs to be upto 2100
+
+
+       </p>
+
+
+    </div>
+    <div class="mb-3 d-flex flex-column">
+      <label for="indexNumber" class="form-label">Index Number</label>
+      <input id="indexNumber" class="form-control" formControlName="indexNumber" type="text"/>
+      <p class="alert alert-danger" *ngIf="examRegistrationForm.get('indexNumber').hasError('required') && examRegistrationForm.get('indexNumber').touched ">
+       Index Number is required
+
+      </p>
+      <p class="alert alert-danger" *ngIf="examRegistrationForm.get('indexNumber').hasError('maxlength') ">
+        Index Number need to have upto 4 characters
+
+       </p>
+    </div>
+
+    <div mat-dialog-actions>
+      <button
+        mat-button
+        mat-flat-button
+        type="submit"
+        color="primary"
+        [disabled]="!examRegistrationForm.valid || diff > 7 || diff < 0"
+      >
+        Edit Exam
+      </button>
+    </div>
+  </div>
+</form>

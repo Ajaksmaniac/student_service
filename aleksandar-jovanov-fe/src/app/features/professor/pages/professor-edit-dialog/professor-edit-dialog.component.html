@@ -1,0 +1,108 @@
+<form [formGroup]="professorForm"   (ngSubmit)="onSubmit()">
+  <div class="col-8">
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="firstname" class="form-label">First name</label>
+      <input id="firstname" class="form-control" formControlName="firstname" type="text"/>
+      <p class="alert alert-danger" *ngIf="professorForm.get('firstname').hasError('required') && professorForm.get('firstname').touched">
+        First name is required
+
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="lastname" class="form-label">Last name</label>
+      <input id="lastname" class="form-control" formControlName="lastname" type="text"/>
+      <p class="alert alert-danger" *ngIf="professorForm.get('lastname').hasError('required') && professorForm.get('lastname').touched">
+        Last name is required
+
+      </p>
+    </div>
+
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" class="form-control" formControlName="email" type="email" />
+      <p class="alert alert-danger" *ngIf="professorForm.get('email').hasError('required') && professorForm.get('email').touched">
+        Email is required
+
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="adress" class="form-label">Adress</label>
+      <input id="adress" class="form-control" formControlName="adress" type="text" />
+      <p class="alert alert-danger" *ngIf="professorForm.get('adress').hasError('required') && professorForm.get('adress').touched">
+        Year of Study is required
+
+      </p>
+    </div>
+    <div class="mb-3 d-flex flex-column">
+      <label for="phone" class="form-label">Phone</label>
+      <input id="phone" class="form-control" formControlName="phone" type="number" />
+      <p class="alert alert-danger" *ngIf="professorForm.get('phone').hasError('required') && professorForm.get('phone').touched">
+        Phone is required
+
+      </p>
+    </div>
+
+
+
+
+
+
+    <div class="mb-3 d-flex flex-column">
+
+        <mat-label>City</mat-label>
+      <mat-select id="city" name="city"formControlName="city"  >
+
+        <mat-option *ngFor="let city of cities" [value]="city">{{city.cityName}}</mat-option>
+      </mat-select>
+
+
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+
+        <mat-label>Subjects</mat-label>
+        <mat-select   formControlName="subjects" multiple [(ngModel)]="selectedSubjects">
+
+          <mat-option  *ngFor="let subject of subjects" [value]="subject">{{subject.name}}</mat-option>
+        </mat-select>
+
+
+
+
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+
+      <mat-label>Title</mat-label>
+      <mat-select id="title" name="title"formControlName="title"  >
+
+        <mat-option *ngFor="let title of titles" [value]="title">{{title.name}}</mat-option>
+      </mat-select>
+
+
+    </div>
+
+
+      <mat-label>Choose Reelection date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="reelection_date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+
+
+  <div>
+
+
+  </div>
+    <div mat-dialog-actions>
+      <button mat-button  mat-flat-button type="submit" color="primary" [disabled]="!professorForm.valid">
+        Update Professor
+      </button>
+
+    </div>
+
+  </div>
+</form>

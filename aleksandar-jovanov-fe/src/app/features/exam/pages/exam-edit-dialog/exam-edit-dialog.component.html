@@ -1,0 +1,70 @@
+<form [formGroup]="examForm" (ngSubmit)="onSubmit()">
+  <div class="col-8">
+    <!-- <div class="mb-3 d-flex flex-column">
+      <b>You can't change examination period</b>
+      <mat-label>Examination Period</mat-label>
+      <mat-select
+        id="examinationPeriod"
+        name="examinationPeriod"
+        formControlName="examinationPeriod"
+        disabled
+      >
+
+        <mat-option *ngFor="let period of periods" [value]="period" selected>{{
+          period.name
+        }}</mat-option>
+      </mat-select>
+    </div> -->
+
+    <b>Period: {{data.examinationPeriod.name}}</b>
+    <br>
+    <b>From {{data.examinationPeriod.starting_period | date}} TO {{data.examinationPeriod.ending_period | date}}</b>
+    <div class="mb-3 d-flex flex-column">
+      <mat-label>Professor</mat-label>
+      <mat-select
+        id="professor"
+        name="professor"
+        formControlName="professor"
+        (selectionChange)="professorChanged()"
+      >
+        <mat-option *ngFor="let professor of professors" [value]="professor"
+          >{{ professor.firstname }} {{ professor.lastname }}</mat-option
+        >
+      </mat-select>
+    </div>
+
+    <p *ngIf="!subjects">Select professor to see what subjects he lectures</p>
+    <div class="mb-3 d-flex flex-column">
+      <mat-label>Subjects</mat-label>
+      <mat-select id="subject" name="subject" formControlName="subject">
+        <mat-option *ngFor="let subject of subjects" [value]="subject">{{
+          subject.name
+        }}</mat-option>
+      </mat-select>
+    </div>
+
+
+    <div class="mb-3 d-flex flex-column">
+      <mat-label>Choose Exam date</mat-label>
+      <input matInput [matDatepicker]="picker1" formControlName="exam_date" >
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+
+      <mat-datepicker #picker1></mat-datepicker>
+    </div>
+
+
+
+
+    <div mat-dialog-actions>
+      <button
+        mat-button
+        mat-flat-button
+        type="submit"
+        color="primary"
+        [disabled]="!examForm.valid"
+      >
+        Edit Exam
+      </button>
+    </div>
+  </div>
+</form>

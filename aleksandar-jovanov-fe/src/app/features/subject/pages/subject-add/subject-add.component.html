@@ -1,0 +1,66 @@
+<form [formGroup]="subjectForm"   (ngSubmit)="onSubmit()">
+  <div class="col-8">
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="name" class="form-label">Name</label>
+      <input id="name" class="form-control" formControlName="name" />
+      <p class="alert alert-danger" *ngIf="subjectForm.get('name').hasError('required') && subjectForm.get('name').touched">
+        Name is required
+        <!-- {{ projectForm.get('name').errors | json  }} -->
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="description" class="form-label">Description</label>
+      <textarea id="description" class="form-control" formControlName="description"></textarea>
+      <p class="alert alert-danger" *ngIf="subjectForm.get('description').hasError('maxlength')">
+        Length is ({{subjectForm.get('description').errors.maxlength.actualLength}}) higher than max length ({{subjectForm.get('description').errors.maxlength.requiredLength}})
+        <!-- {{ projectForm.get('description').errors | json  }} -->
+      </p>
+    </div>
+
+
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="noOfEsp" class="form-label">ESPB</label>
+      <input id="noOfEsp" class="form-control" formControlName="noOfEsp" type="number"/>
+      <p class="alert alert-danger" *ngIf="subjectForm.get('noOfEsp').hasError('required') && subjectForm.get('noOfEsp').touched">
+        ESPB is required
+        <!-- {{ projectForm.get('name').errors | json  }} -->
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="yearOfStudy" class="form-label">Year of study</label>
+      <input id="yearOfStudy" class="form-control" formControlName="yearOfStudy" type="number"/>
+      <p class="alert alert-danger" *ngIf="subjectForm.get('yearOfStudy').hasError('required') && subjectForm.get('yearOfStudy').touched">
+        Year of Study is required
+        <!-- {{ projectForm.get('name').errors | json  }} -->
+      </p>
+    </div>
+
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="semester" class="form-label">Semester</label>
+      <select id="semester" class="form-select" formControlName="semester">
+
+        <option *ngFor="let val of getEnumKeys()" [ngValue]="val">
+          {{ val }}
+          <!-- {{ val }} -->
+        </option>
+      </select>
+
+
+    </div>
+    <div class="d-flex flex-row mt-2">
+
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button  mat-flat-button type="submit" color="primary" [disabled]="!subjectForm.valid">
+        Save subject
+      </button>
+
+    </div>
+
+  </div>
+</form>

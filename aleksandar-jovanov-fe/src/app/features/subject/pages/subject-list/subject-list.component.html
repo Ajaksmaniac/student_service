@@ -1,0 +1,70 @@
+<p-toast position="bottom-center" key="c" >
+  <ng-template let-message pTemplate="message">
+      <div class="p-flex p-flex-column" style="flex: 2">
+          <div class="p-text-center">
+
+              <h4>{{message.summary}}</h4>
+              <p>{{message.detail}}</p>
+          </div>
+          <div class="p-grid p-fluid">
+              <div class="p-col-6">
+                  <button mat-stroked-button color="warn"  (click)="onConfirm()">YES</button>
+
+              </div>
+              <div class="p-col-6">
+                  <button mat-stroked-button color="primary"   (click)="onReject()">No</button>
+
+
+              </div>
+          </div>
+      </div>
+  </ng-template>
+</p-toast>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th sortable="id" (sort)="onSort($event)" scope="col" >Id</th>
+    <th sortable="name" (sort)="onSort($event)" scope="col" >Name</th>
+    <th sortable="espb" (sort)="onSort($event)" scope="col" >ESPB</th>
+    <th sortable="yearOfStudy" (sort)="onSort($event)" scope="col" >Year of Study</th>
+    <th sortable="semester" (sort)="onSort($event)" scope="col" >Semester</th>
+    <th  >Actions</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let subject of subjects; let i=index ">
+    <th scope="row">{{ i + (currentPage - 1) * pageSize + 1 }}</th>
+    <td>
+      {{ subject.id }}
+    </td>
+    <td>{{ subject.name }}</td>
+    <td>{{ subject.noOfEsp |number}}</td>
+    <td>{{ subject.yearOfStudy |number}}</td>
+    <td>{{ subject.semester}}</td>
+    <td>
+      <button mat-icon-button color="accent" aria-label="Example icon button with a delete icon" (click)="openEditDialog(subject)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" aria-label="Example icon button with a delete icon" (click)="openInfoDialog(subject)">
+        <mat-icon>info</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" aria-label="Example icon button with a delete icon"   (click)="deleteSubject(subject) ">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination [collectionSize]="totalItems" (pageChange)="onPageChange($event)" [(page)]="currentPage" [pageSize]="pageSize" [boundaryLinks]="true"></ngb-pagination>
+  <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="loadSubjecs()">
+    <option [ngValue]="2">2 items per page</option>
+    <option [ngValue]="4">4 items per page</option>
+    <option [ngValue]="6">6 items per page</option>
+    <option [ngValue]="10">10 items per page</option>
+  </select>
+</div>
+

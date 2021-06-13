@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Exam details</h1>
+<div mat-dialog-content>
+  <p>Examination Period: {{ data.examinationPeriod.name }}</p>
+  <p>Subject: {{ data.subject.name }}</p>
+
+  <p>Professor: {{ data.professor.firstname }}  {{ data.professor.lastname }}</p>
+  <p>Exam date: {{ data.exam_date |date}}</p>
+
+  <p>Students who have registered for the exam:</p>
+<p *ngFor="let student of data.students"><b>{{student.student.indexYear }}/{{student.student.indexNumber }}</b>     {{student.student.firstName }} {{student.student.lastName }}</p>
+</div>

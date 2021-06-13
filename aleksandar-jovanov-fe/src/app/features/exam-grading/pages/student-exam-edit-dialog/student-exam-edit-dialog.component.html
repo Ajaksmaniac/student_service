@@ -1,0 +1,35 @@
+<form [formGroup]="studentExamForm"   (ngSubmit)="onSubmit()">
+  <div class="col-8">
+    <div class="mb-3 d-flex flex-column">
+      <label for="grade" class="form-label">Index Year</label>
+      <input id="grade" class="form-control" formControlName="grade" type="number"/>
+      <p class="alert alert-danger" *ngIf="studentExamForm.get('grade').hasError('required') && studentExamForm.get('grade').touched ">
+       Grade is required
+
+
+      </p>
+      <p class="alert alert-danger" *ngIf="studentExamForm.get('grade').hasError('max') ">
+      Grade needs to be beetween 1 and 10
+
+
+       </p>
+
+
+    </div>
+
+
+
+
+  <div>
+
+
+  </div>
+    <div mat-dialog-actions>
+      <button mat-button  mat-flat-button type="submit" color="primary" [disabled]="!studentExamForm.valid">
+        Update Student
+      </button>
+
+    </div>
+
+  </div>
+</form>

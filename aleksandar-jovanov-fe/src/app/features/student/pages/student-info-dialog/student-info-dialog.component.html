@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Student details</h1>
+<div mat-dialog-content>
+
+
+    <p>Student Index: {{data.id}} </p >
+    <p>First Name: {{data.firstName}} </p >
+    <p>First Name: {{data.lastName}} </p >
+    <p>Email: {{data.email}} </p >
+    <p>City: {{data.city.cityName}} </p >
+    <p>Adress: {{data.adress}} </p >
+    <p>Current Year of Study: {{data.currentYearOfStudy}} </p >
+
+    <b>Registered Exams:</b>
+
+    <p *ngFor="let exam of data.exams ">{{exam.exam.examinationPeriod.name}} {{exam.exam.exam_date | date:'short'}} {{exam.exam.subject.name}} <b>Grade:{{exam.grade}}</b></p>
+
+
+</div>
